@@ -73,7 +73,7 @@ def train_model(model, num_classes, dataloaders, criterion,
             running_iou_means = []
             
             # Iterate over data.
-            for inputs, labels in tqdm(dataloaders[phase]):
+            for inputs, labels, img_names in tqdm(dataloaders[phase]):
                 inputs = inputs.to(device)
                 labels = labels.to(device)
 
