@@ -25,12 +25,7 @@ def compute_iou(pred, target, which_classes = [0,1,2,3]):
 def compute_total_error(pred, target, which_classes = [0,1,2,3]):
     pred = pred.view(-1)
     target = target.view(-1)
-
-    # if only sclera and periocular 
-    if which_classes == [0, 3]:
-        pred[pred == 1] = 0
-        pred[pred == 2] = 0
-        
+    
     all_true = pred == target
     num_true = all_true.long().sum().data.cpu().item()
     num_false = len(target) - num_true 

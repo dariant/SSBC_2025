@@ -53,7 +53,7 @@ class DataLoaderSegmentation(torch.utils.data.dataset.Dataset):
         new_label[label[2] == 255] = 3
         new_label = new_label.to(dtype=torch.long)
         
-        return image, new_label
+        return image, new_label, self.img_files[index]
 
     def __len__(self):
         return len(self.img_files)
