@@ -66,7 +66,7 @@ def main():
         gt_folder_path = os.path.join(cfg.data_dir , val_folder, "labels")
         gt_files = os.listdir(gt_folder_path) 
 
-        pred_folder_path = os.path.join(cfg.pred_folder, cfg.which_train_folder, val_folder)
+        pred_folder_path = os.path.join(cfg.pred_folder, cfg.which_train_folder, f"{val_folder}_{cfg.all_or_sclera}")
 
         
         all_IoU = []; all_f1 = []; all_total_errors = []
