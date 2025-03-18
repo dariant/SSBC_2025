@@ -1,14 +1,9 @@
-data_dir=  "OCULAR_DATASETS" 
-# which_train_folder = "CrossEyed_RGB-NIR-Label_5000_500_300x400"
+data_dir=  "SSBC_DATASETS/Evaluation (sample)" 
+which_val_folders =  ["MOBIUS_400x300", "SMD+SLD_400x300"]
+
 which_train_folder =  "PolyU+CrossEyed_RGB-NIR-Label_5000_500_300x400"
+pred_folder = "SSBC_SEG_PREDICTIONS" 
+results_folder = "SSBC_SEG_EVAL_RESULTS" 
 
-num_classes = 4 # sclera, iris, pupil, periocular
- 
-which_val_folders =  ["SBVPI_300x400", "SMD_300x400", "MOBIUS_300x400"]  
-all_or_sclera = "sclera" 
-
-# which_val_folders =  ["MOBIUS_300x400"]  
-# all_or_sclera = "all"
-
-pred_folder = "SSBC_SEG_PREDICTIONS"
-results_folder = "SSBC_SEG_RESULTS_EVAL/" + which_train_folder 
+width = 400
+height = 300

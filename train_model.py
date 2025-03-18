@@ -1,7 +1,5 @@
 import os
 import torch
-import torchvision
-import argparse
 import pathlib
 import numpy as np
 

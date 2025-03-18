@@ -6,7 +6,7 @@ from torchvision.utils import save_image
 
 from utils.dataloader import DataLoaderSegmentation
 from utils.deeplab_model import initialize_model
-import configs.test_config as cfg 
+import configs.predict_config as cfg 
 
 def generate_predictions(model, dataloader, device, result_folder):
     print("Generate predictions...")
@@ -27,31 +27,26 @@ def generate_predictions(model, dataloader, device, result_folder):
         outputs = model(inputs)['out']  
         _, preds = torch.max(outputs, 1)
         
-        if outputs.ndim == 4:
-            # Create a binary mask of the sclera        
-            binarised = preds == 1
-            background = outputs.clone()
-            background[:, 1, ...] = float('-inf')
-            outputs = torch.stack([background.amax(dim=1), outputs[:, 1, ...]], dim=1)
+        # Create a binary mask of the sclera        
+        binarised = preds == 1
+        background = outputs.clone()
+        background[:, 1, ...] = float('-inf')
+        outputs = torch.stack([background.amax(dim=1), outputs[:, 1, ...]], dim=1)
 
-            # Create the probabilistic image
-            diff = outputs[:, 1, ...] - outputs[:, 0, ...]
-            min_, max_ = diff.amin(dim=(1, 2))[:, None, None], diff.amax(dim=(1, 2))[:, None, None]
-            probabilistic = (diff - min_) / (max_ - min_)
-            
-        else: 
-            probabilistic = outputs
-            binarised = outputs > .5
-
+        # Create the probabilistic image
+        diff = outputs[:, 1, ...] - outputs[:, 0, ...]
+        min_, max_ = diff.amin(dim=(1, 2))[:, None, None], diff.amax(dim=(1, 2))[:, None, None]
+        probabilistic = (diff - min_) / (max_ - min_)
+        
         # Assign colors with indexing
         pred_mask = color_map[preds].permute(0, 3, 1, 2)
         pred_mask = pred_mask / 255 
 
         for img_index, img_name in enumerate(img_names):
-            img_name = os.path.basename(img_name)
-            save_image(binarised[img_index].to(torch.float), os.path.join(result_folder, "Binarised", img_name))
-            save_image(probabilistic[img_index], os.path.join(result_folder, "Predictions", img_name))
-            save_image(pred_mask[img_index], os.path.join(result_folder, "Entire_masks", img_name))
+            img_name = os.path.basename(img_name).replace(".jpg", ".png")
+            save_image(binarised[img_index].to(torch.float), os.path.join(result_folder, "Binarised", img_name), format="PNG")
+            save_image(probabilistic[img_index], os.path.join(result_folder, "Predictions", img_name),  format="PNG")
+            save_image(pred_mask[img_index], os.path.join(result_folder, "Entire_masks", img_name.replace("jpg", "png")),  format="PNG")
 
         
 def main():
