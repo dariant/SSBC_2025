@@ -10,12 +10,12 @@ from PIL import Image
 class DataLoaderSegmentation(torch.utils.data.dataset.Dataset):
     def __init__(self, folder_path, mode):
         super(DataLoaderSegmentation, self).__init__()
-        self.img_files = glob.glob(os.path.join(folder_path,'images','*.*'))
+        self.img_files = glob.glob(os.path.join(folder_path,'Images','*.*'))
         self.label_files = []
         for img_path in self.img_files:
             image_filename, _ = os.path.splitext(os.path.basename(img_path))
             label_filename_with_ext = f"{image_filename.replace('RGB', 'label')}.png"
-            self.label_files.append(os.path.join(folder_path, 'labels', label_filename_with_ext))
+            self.label_files.append(os.path.join(folder_path, 'Masks', label_filename_with_ext))
             
 
         print(f"{mode} dir:", folder_path)
