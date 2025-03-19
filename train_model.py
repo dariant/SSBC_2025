@@ -120,7 +120,7 @@ def train_model(model, num_classes, dataloaders, criterion,
             if phase == 'val' and epoch_acc > best_acc:
                 best_acc = epoch_acc
                 best_DeepLabV3_acc = copy.deepcopy(model.state_dict())
-                torch.save(best_DeepLabV3_acc, os.path.join(dest_dir, "best_DeepLabV3_acc.pth"))
+                torch.save(best_DeepLabV3_acc, os.path.join(dest_dir, "best_trained_DeepLabV3.pth"))
                 
             if phase == 'val':
                 val_acc_history.append(epoch_acc)
@@ -151,53 +151,51 @@ def train_model(model, num_classes, dataloaders, criterion,
 
     print('Best val Acc: {:4f}'.format(best_acc))
 
-    save_path = os.path.join(dest_dir, "best_DeepLabV3.pth")
+    save_path = os.path.join(dest_dir, "best_trained_DeepLabV3.pth")
     print(f"Save best model: {save_path}")
     torch.save(best_DeepLabV3_acc, save_path)
     
 
-def main(args):
+def main():
     set_seed(0)
 
     # Initialize datasets and dataloaders
-    train_dir = os.path.join(args.data_dir, args.which_train_folder)
-    val_dir = os.path.join(args.data_dir, args.which_val_folder)
-
-    train_dataset = DataLoaderSegmentation(train_dir,"train" ) 
-    validate_dataset = DataLoaderSegmentation(val_dir, "val") 
+    train_dir = os.path.join(cfg.data_dir, cfg.main_folder, "Training")
+    val_dir = os.path.join(cfg.data_dir, cfg.main_folder, "Validation")
     
-    train_dataloader = torch.utils.data.DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True, num_workers=2)
-    validate_dataloader = torch.utils.data.DataLoader(validate_dataset, batch_size=args.batch_size, shuffle=True, num_workers=2)
+    print(f"Number of classes: {cfg.num_classes}")
+    train_dataset = DataLoaderSegmentation(train_dir,"train", num_classes=cfg.num_classes ) 
+    validate_dataset = DataLoaderSegmentation(val_dir, "val", num_classes=cfg.num_classes) 
+    
+    train_dataloader = torch.utils.data.DataLoader(train_dataset, batch_size=cfg.batch_size, shuffle=True, num_workers=2)
+    validate_dataloader = torch.utils.data.DataLoader(validate_dataset, batch_size=cfg.batch_size, shuffle=True, num_workers=2)
 
     dataloaders_dict = {"train": train_dataloader, "val": validate_dataloader}
 
     # Detect if GPU is available
-    print(args.device_name)
-    device = torch.device(args.device_name if torch.cuda.is_available() else "cpu")
+    print("Device:", cfg.device_name)
+    device = torch.device(cfg.device_name if torch.cuda.is_available() else "cpu")
     
-    # Initialize model
-    net = initialize_model(args.num_classes, use_pretrained=True)
+    # Initialize the DeepLabV3 model
+    net = initialize_model(cfg.num_classes, use_pretrained=True)
     net = net.to(device)
-
-    weight = []
-    if args.w: [weight.append(w) for w in args.w]
 
     # Define training parameters
     optimizer_ft = torch.optim.Adam(net.parameters(), lr=1e-4)
     scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer_ft, verbose=True, patience=5)
-    criterion = torch.nn.CrossEntropyLoss(weight=(torch.FloatTensor(weight).to(device) if weight else None))
+    criterion = torch.nn.CrossEntropyLoss()
 
     # Prepare output directory
-    pathlib.Path(args.dest_dir).mkdir(parents=True, exist_ok=True)
+    pathlib.Path(cfg.dest_dir).mkdir(parents=True, exist_ok=True)
     print("Train...")
 
     # Train and evaluate
-    train_model(net, args.num_classes, dataloaders_dict, 
+    train_model(net, cfg.num_classes, dataloaders_dict, 
                 criterion, optimizer_ft, scheduler, 
-                device, args.dest_dir, 
-                num_epochs=args.num_epochs)
+                device, cfg.dest_dir, 
+                num_epochs=cfg.num_epochs)
 
 
 
 if __name__ == '__main__':
-    main(cfg)
+    main()

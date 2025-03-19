@@ -22,8 +22,7 @@ def generate_predictions(model, dataloader, device, result_folder):
     # Iterate over data.
     for inputs, labels, img_names  in tqdm(dataloader):
         inputs = inputs.to(device)
-        labels = labels.to(device)
-
+        
         outputs = model(inputs)['out']  
         _, preds = torch.max(outputs, 1)
         
@@ -61,7 +60,7 @@ def main():
     
     for val_folder in cfg.which_val_folders:
         val_folder_path = os.path.join(cfg.data_dir, val_folder)
-        validate_dataset = DataLoaderSegmentation(val_folder_path, "val") 
+        validate_dataset = DataLoaderSegmentation(val_folder_path, "test", cfg.num_classes) 
         validate_dataloader = torch.utils.data.DataLoader(validate_dataset, batch_size=cfg.batch_size, shuffle=False, num_workers=2)
 
         result_folder = os.path.join(cfg.predictions_folder, val_folder)

@@ -1,9 +1,7 @@
-data_dir=  "SSBC_DATASETS/Evaluation (sample)" 
-which_val_folders =  ["MOBIUS_400x300", "SMD+SLD_400x300"]
+data_dir=  "SSBC_DATASETS_400x300/Evaluation_Sample"
+which_val_folders = ["MOBIUS", "SMD+SLD"]  
 
-which_train_folder =  "PolyU+CrossEyed_RGB-NIR-Label_5000_500_300x400"
 pred_folder = "SSBC_SEG_PREDICTIONS" 
-results_folder = "SSBC_SEG_EVAL_RESULTS" 
+which_train_folder =  "Synthetic_SIP"
 
-width = 400
-height = 300
+results_folder = f"SSBC_SEG_EVAL_RESULTS/{which_train_folder}" 

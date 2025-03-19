@@ -65,6 +65,11 @@ def compute_scores_for_probabilistic_prediction(gt_bin, pred_prob):
 def main():
     print("Evaluate predictions...")
 
+    overall_results = {
+            "Binary": {"F1":[], "IoU":[]}, 
+            "Probabilistic": {"F1":[], "Precision":[], "Recall":[]},
+        }
+    
     for val_folder in cfg.which_val_folders:
         gt_folder_path = os.path.join(cfg.data_dir , val_folder, "Masks")
         gt_files = os.listdir(gt_folder_path) 
@@ -86,8 +91,9 @@ def main():
             pred_bin = Image.open(pred_bin_path).convert('L')
             pred_bin = np.asarray(pred_bin).ravel() // 255
             
-            f1_bin = skmetrics.f1_score(gt_bin, pred_bin, average="macro", labels=[0, 1])
+            f1_bin = skmetrics.f1_score(gt_bin, pred_bin, average="macro")
             iou_bin =skmetrics.jaccard_score(gt_bin, pred_bin)
+            
             results["Binary"]["F1"].append(f1_bin)
             results["Binary"]["IoU"].append(iou_bin)
             
@@ -100,16 +106,27 @@ def main():
             results["Probabilistic"]["F1"].append(f1_prob)
             results["Probabilistic"]["Precision"].append(precision_prob)
             results["Probabilistic"]["Recall"].append(recall_prob)
-
+            
         for key in results.keys():
             for metric in results[key].keys():
+                overall_results[key][metric] += results[key][metric]
                 results[key][metric] = np.mean(np.array(results[key][metric])) 
         
-        print(results)
+        print(f"Results for: {val_folder}", results)
         # Save results dict to json 
         os.makedirs(cfg.results_folder, exist_ok=True)
         with open(f"{cfg.results_folder}/{val_folder}.json", 'w') as fp:
             json.dump(results, fp, sort_keys=True, indent=4)
+
+    for key in results.keys():
+        for metric in results[key].keys():
+            overall_results[key][metric] = np.mean(np.array(overall_results[key][metric])) 
+
+    print("===" * 30)
+    print("Overall results:", overall_results)
+    os.makedirs(cfg.results_folder, exist_ok=True)
+    with open(f"{cfg.results_folder}/overall_results.json", 'w') as fp:
+        json.dump(overall_results, fp, sort_keys=True, indent=4)
 
 if __name__ == '__main__':
     main()
