@@ -22,7 +22,7 @@ def generate_predictions(model, dataloader, device, result_folder):
     # Iterate over data.
     for inputs, labels, img_names  in tqdm(dataloader):
         inputs = inputs.to(device)
-        
+
         outputs = model(inputs)['out']  
         _, preds = torch.max(outputs, 1)
         
@@ -45,7 +45,8 @@ def generate_predictions(model, dataloader, device, result_folder):
             img_name = os.path.basename(img_name).replace(".jpg", ".png")
             save_image(binarised[img_index].to(torch.float), os.path.join(result_folder, "Binarised", img_name), format="PNG")
             save_image(probabilistic[img_index], os.path.join(result_folder, "Predictions", img_name),  format="PNG")
-            save_image(pred_mask[img_index], os.path.join(result_folder, "Entire_masks", img_name.replace("jpg", "png")),  format="PNG")
+            if cfg.save_four_class_masks:
+                save_image(pred_mask[img_index], os.path.join(result_folder, "Entire_masks", img_name.replace("jpg", "png")),  format="PNG")
 
         
 def main():
@@ -65,8 +66,10 @@ def main():
 
         result_folder = os.path.join(cfg.predictions_folder, val_folder)
 
-        for subfolder in ["Predictions", "Binarised", "Entire_masks"]:
-            os.makedirs(os.path.join(cfg.predictions_folder, val_folder, subfolder) , exist_ok=True)
+        subfolders = ["Predictions", "Binarised"] 
+        if cfg.save_four_class_masks: subfolders += ["Entire_masks"]
+        for subfold in subfolders: #, "Entire_masks"]:
+            os.makedirs(os.path.join(cfg.predictions_folder, val_folder, subfold) , exist_ok=True)
         
         # Train and evaluate
         generate_predictions(net, validate_dataloader, device, result_folder)

@@ -9,3 +9,4 @@ device_name = "cuda:0"
 batch_size = 4
 
 predictions_folder = f"SSBC_SEG_PREDICTIONS/{which_train_folder}"
+save_four_class_masks = False
