@@ -8,5 +8,5 @@ resume_where =  f"SSBC_SEG_EXPERIMENTS/{which_train_folder}/best_trained_DeepLab
 device_name = "cuda:0"
 batch_size = 4
 
-predictions_folder = f"SSBC_SEG_PREDICTIONS/{which_train_folder}"
+predictions_folder = f"SSBC_SEG_PREDICTIONS/Synthetic"
 save_four_class_masks = False

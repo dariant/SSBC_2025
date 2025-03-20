@@ -74,7 +74,7 @@ def main():
         gt_folder_path = os.path.join(cfg.data_dir , val_folder, "Masks")
         gt_files = os.listdir(gt_folder_path) 
 
-        pred_folder_path = os.path.join(cfg.pred_folder, cfg.which_train_folder, val_folder)
+        pred_folder_path = os.path.join(cfg.pred_folder, cfg.which_prediction_folder, val_folder)
         
         results = {
             "Binary": {"F1":[], "IoU":[]}, 
