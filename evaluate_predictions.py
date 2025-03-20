@@ -73,7 +73,7 @@ def main():
             pred_bin = Image.open(pred_bin_path).convert('L')
             pred_bin = np.asarray(pred_bin).ravel() // 255
             
-            f1_bin = skmetrics.f1_score(gt_bin, pred_bin, average="macro")
+            f1_bin = skmetrics.f1_score(gt_bin, pred_bin)
             iou_bin =skmetrics.jaccard_score(gt_bin, pred_bin)
             
             results["Binary"]["F1"].append(f1_bin)
