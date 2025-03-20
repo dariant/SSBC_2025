@@ -1,5 +1,5 @@
-## SSBC2025_Segmentation
-Repository for the baseline sclera segmentation model used in the SSBC competition at IJCB 2025. 
+## Sclera Segmentation and Benchmarking Competition (SSBC 2025)
+Starter kit for the baseline sclera segmentation model used in the SSBC competition at IJCB 2025. 
 
 ## Usage 
 1. Run [train_model.py](https://github.com/dariant/SSBC2025_Segmentation/blob/main/train_model.py) to train the model on a desired dataset (e.g. the SSBC2025 Synthetic dataset).
