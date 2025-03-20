@@ -7,24 +7,6 @@ import configs.eval_config as cfg
 from PIL import Image 
 import json 
 
-def convert_multichannel_mask(mask):
-    """
-    Converts a 3-channel mask values 0 or 255 at each channel into a 
-    single-channel labeled mask with labels 0, 1, 2, 3 corresponding to each channel.
-    
-    Parameters:
-        mask : 3-channel mask with values 0 or 255 at each channel
-    """
-
-    # Initialize output mask with zeros (background)
-    output_mask = np.zeros(mask.shape[:2], dtype=np.uint8)
-
-    # Assign class labels, based on the value 255 in each channel
-    output_mask[mask[:, :, 0] == 255] = 1  
-    output_mask[mask[:, :, 1] == 255] = 2  
-    output_mask[mask[:, :, 2] == 255] = 3  
-
-    return output_mask
 
 def compute_scores_for_probabilistic_prediction(gt_bin, pred_prob):
     """
