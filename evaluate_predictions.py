@@ -52,8 +52,8 @@ def main():
             "Probabilistic": {"F1":[], "Precision":[], "Recall":[]},
         }
     
-    for val_folder in cfg.which_val_folders:
-        gt_folder_path = os.path.join(cfg.data_dir , val_folder, "Masks")
+    for val_folder in cfg.val_folders:
+        gt_folder_path = os.path.join(cfg.root_folder , val_folder, "Masks")
         gt_files = os.listdir(gt_folder_path) 
 
         pred_folder_path = os.path.join(cfg.pred_folder, cfg.which_prediction_folder, val_folder)

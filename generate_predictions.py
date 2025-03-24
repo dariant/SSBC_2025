@@ -59,8 +59,8 @@ def main():
     net = net.to(device)
     net.eval() 
     
-    for val_folder in cfg.which_val_folders:
-        val_folder_path = os.path.join(cfg.data_dir, val_folder)
+    for val_folder in cfg.val_folders:
+        val_folder_path = os.path.join(cfg.root_folder, val_folder)
         validate_dataset = DataLoaderSegmentation(val_folder_path, "test", cfg.num_classes) 
         validate_dataloader = torch.utils.data.DataLoader(validate_dataset, batch_size=cfg.batch_size, shuffle=False, num_workers=2)
 

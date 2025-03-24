@@ -1,9 +1,9 @@
-data_dir = "SSBC_DATASETS_400x300"
-main_folder = "Synthetic_SIP" # "Syn+SBVPI_Sclera" 
-num_classes = 4 # Set to 4, for SIP training folder, and 2 for Sclera 
+root_folder = "SSBC_DATASETS_400x300"
+data_folder = "Mixed_Sclera" # "Synthetic_SIP" # "Mixed_Sclera"
+num_classes = 4 if "SIP" in data_folder else 2  # 4 for SIP data, and 2 for only Sclera 
 
 device_name = "cuda:0"
 batch_size = 8
 num_epochs = 50 
 
-dest_dir = f"SSBC_SEG_EXPERIMENTS/{main_folder}"
+dest_folder = f"SSBC_SEG_MODELS/{data_folder.split('_')[0]}"

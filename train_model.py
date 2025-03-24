@@ -160,8 +160,8 @@ def main():
     set_seed(0)
 
     # Initialize datasets and dataloaders
-    train_dir = os.path.join(cfg.data_dir, cfg.main_folder, "Training")
-    val_dir = os.path.join(cfg.data_dir, cfg.main_folder, "Validation")
+    train_dir = os.path.join(cfg.root_folder, cfg.data_folder, "Training")
+    val_dir = os.path.join(cfg.root_folder, cfg.data_folder, "Validation")
     
     print(f"Number of classes: {cfg.num_classes}")
     train_dataset = DataLoaderSegmentation(train_dir,"train", num_classes=cfg.num_classes ) 
@@ -186,13 +186,13 @@ def main():
     criterion = torch.nn.CrossEntropyLoss()
 
     # Prepare output directory
-    pathlib.Path(cfg.dest_dir).mkdir(parents=True, exist_ok=True)
+    pathlib.Path(cfg.dest_folder).mkdir(parents=True, exist_ok=True)
     print("Train...")
 
     # Train and evaluate
     train_model(net, cfg.num_classes, dataloaders_dict, 
                 criterion, optimizer_ft, scheduler, 
-                device, cfg.dest_dir, 
+                device, cfg.dest_folder, 
                 num_epochs=cfg.num_epochs)
 
 
