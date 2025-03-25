@@ -1,5 +1,5 @@
 root_folder = "SSBC_DATASETS_400x300"
-data_folder = "Mixed_Sclera" # "Synthetic_SIP" # "Mixed_Sclera"
+data_folder = "Synthetic_SIP" # "Mixed_Sclera"
 num_classes = 4 if "SIP" in data_folder else 2  # 4 for SIP data, and 2 for only Sclera 
 
 device_name = "cuda:0"
