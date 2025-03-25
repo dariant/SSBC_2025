@@ -4,3 +4,6 @@
 *.pyc*
 *PREDICTIONS*
 *RESULTS*
+*EyeZ*
+*DatasetGAN*
+*data_preparation*
