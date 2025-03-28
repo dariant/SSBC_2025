@@ -24,13 +24,17 @@ class DataLoaderSegmentation(torch.utils.data.dataset.Dataset):
         
     def __getitem__(self, index):
         image = Image.open(self.img_files[index])
-        label = Image.open(self.label_files[index])
         # Apply Transforms
         image = self.transforms(image)
+        
+        if self.mode == "test":
+            return image, self.img_files[index]
+
+        label = Image.open(self.label_files[index])
         label = transforms.functional.pil_to_tensor(label)
         
         # if only training on sclera (binary mask)
-        if self.num_classes == 2 or self.mode == "test":
+        if self.num_classes == 2:
             new_label = torch.zeros(label.shape[1], label.shape[2])
             new_label[label[0] == 255] = 1
             new_label = new_label.to(dtype=torch.long)

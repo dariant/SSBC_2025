@@ -20,7 +20,7 @@ def generate_predictions(model, dataloader, device, result_folder):
     ], dtype=torch.uint8, device=device)
     
     # Iterate over data.
-    for inputs, labels, img_names  in tqdm(dataloader):
+    for inputs, img_names  in tqdm(dataloader):
         inputs = inputs.to(device)
 
         outputs = model(inputs)['out']  
