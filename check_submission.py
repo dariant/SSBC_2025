@@ -102,7 +102,9 @@ def _get_files(dataset):
 		raise ValueError(f"Couldn't find {dataset} in {args.data}")
 	files = [f.relative_to(data).with_suffix('.png') for f in data.rglob('*.*')]
 	# if evaluation images are in the "Images" subdirectory, we need to remove the subdirectory name from the path 
-	files = [f.name if f"Images" in f.parts or f"images" in f.parts else f for f in files]
+	files = [Path(f.name) if "Images" in f.parts or "images" in f.parts else f for f in files]
+	# skip "masks" directories in submission 
+	files = [f for f in files if "Masks" not in f.parts and "masks" not in f.parts]
 	return files
 
 
