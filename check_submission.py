@@ -3,10 +3,10 @@
 # Tested with python 3.12
 # Requires: numpy, rich, joblib, tqdm, pillow (all can be installed via pip or other package managers)
 
-# USAGE: python check_submission.py PATH IMG_PATH [-q] [-l LIMIT]
-# PATH: path to submission directory (if an archive is given instead, it will be extracted and removed!)
-# IMG_PATH: path to directory of images to use as basis for checking the presence of all necessary masks in submission
-# -q: quick mode, only check file presence, not file contents
+# USAGE: python check_submission.py [-s SUBMISSION_PATH] [-d DATA_PATH] [-q] [-l LIMIT]
+# SUBMISSION_PATH: path to submission directory (if an archive is given instead, it will be extracted and removed!)
+# DATA_PATH: path to directory of images to use as basis for checking the presence of all necessary masks in submission
+# -q: quick mode; only check file presence, not file contents
 # -l: limit the number of files printed in error messages (default 5, 0 will print all)
 
 import argparse
