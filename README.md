@@ -9,6 +9,9 @@ Starter kit for the baseline sclera segmentation model used in the SSBC competit
 
 Set the desired training, testing, and evaluation configurations in [train_config.py](https://github.com/dariant/SSBC2025_Segmentation/blob/main/configs/train_config.py), [predict_config.py](https://github.com/dariant/SSBC2025_Segmentation/blob/main/configs/predict_config.py), and [eval_config.py](https://github.com/dariant/SSBC2025_Segmentation/blob/main/configs/eval_config.py).
 
+## Datasets
+TODO
+
 ## Requirements & Installation
 ```bash
 conda create -n ssbc2025 python=3.10
