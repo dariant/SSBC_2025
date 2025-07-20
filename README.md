@@ -18,12 +18,12 @@ Both training datasets come in 2 versions. One version contains the images and t
 
 ## Training protocol of SSBC
 
-The participants were asked to train two versions of their segmentation method. The first should be trained exclusively on the SynMOBIUS data, while the second can use any mix of the SynMOBIUS and SBVPI data. Any other decisions regarding the model architecture and training approach were left to the participants’ discretion, including:
-- Train either a 4-class or a 2-class segmentation model,
+The participants were asked to train two versions of their segmentation method, with the trained exclusively on SynMOBIUS, while the second could use any mix of SynMOBIUS and SBVPI data. Any other decisions regarding the model architecture and training procedure were left to the participants’ discretion, including:
+- Training either a 4-class or a 2-class segmentation model,
 - The training/validation set distribution split,
-- Sample balancing in model training to equalize the real/synthetic sample representation
-- Data augmentation during training
-- Training image size, however, the final evaluation is performed on 400x300 images
+- Sample balancing to equalize the real/synthetic sample representation,
+- Data augmentation during training,
+- Training image size, however, the final evaluation was performed on 400x300 images
 
 
 ## Evaluation datasets 
