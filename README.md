@@ -4,17 +4,9 @@
 <a href='https://ijcb2025.ieee-biometrics.org/competitions/'><img src='https://img.shields.io/badge/Competition_at-IJCB_2025-blue'></a>
 
 This repository contains information regarding the Privacy-enhancing Sclera Segmentation Benchmarking Competition, which was held at IJCB 2025.
-Included are the training and evaluation protocols and datasets, along with the code for an example segmentation model. 
+Included are the training and evaluation protocols and datasets, along with the code for an example baseline segmentation model. 
   
-## Usage 
-1. Place the downloaded ocular datasets in the "SSBC_DATASETS_400x300" directory.  
-2. Run [train_model.py](https://github.com/dariant/SSBC2025_Segmentation/blob/main/train_model.py) to train the model on a desired dataset (e.g. the SSBC2025 Synthetic dataset).
-3. Run [generate_predictions.py](https://github.com/dariant/SSBC2025_Segmentation/blob/main/generate_predictions.py) to perform segmentation with the trained model on real-world validation sets (e.g. MOBIUS, SMD+SLD) and save the binarised and probabilstic predictions. 
-4. Run [evaluate_predictions.py](https://github.com/dariant/SSBC2025_Segmentation/blob/main/evaluate_predictions.py) to evaluate the predictions separately in terms of F1 score and IoU for binarised masks, and Precision, Recall, and F1 score for probabilistic images. 
-
-Set the desired training, testing, and evaluation configurations in [train_config.py](https://github.com/dariant/SSBC2025_Segmentation/blob/main/configs/train_config.py), [predict_config.py](https://github.com/dariant/SSBC2025_Segmentation/blob/main/configs/predict_config.py), and [eval_config.py](https://github.com/dariant/SSBC2025_Segmentation/blob/main/configs/eval_config.py).
-
-## Training datasets and protocol:
+## Training datasets and protocol
 The following datasets were used as part of SSBC for training sclera segmentation models: 
 - [SBVPI (Sclera Blood Vessels, Periocular and Iris dataset)](https://sclera.fri.uni-lj.si/datasets.html)  
 - [SynCROI (Synthetic Cross-Racial Ocular Image dataset)](https://sclera.fri.uni-lj.si/datasets.html) (To be released)
@@ -28,14 +20,22 @@ The participants were asked to train two versions of their segmentation method, 
 - Data augmentation during training,
 - Training image size, however, the final evaluation was performed on 400x300 images
 
-
-## Evaluation datasets and protocol:
+## Evaluation datasets and protocol
 The following datasets were used as part of SSBC for evaluating sclera segmentation performance: 
 - [MOBIUS (Mobile Ocular Biometrics In Unconstrained Settings dataset)](https://sclera.fri.uni-lj.si/datasets.html)
 - [SMD+SLD (Sclera Mobile Dataset + Sclera Liveness Dataset)](https://sites.google.com/site/dasabhijit2048/datatsets)
 - [SynMOBIUS (Synthetic MOBIUS dataset)](https://sclera.fri.uni-lj.si/datasets.html) (To be released)
 
 The evaluation will be performed on the sclera alone, however, 4-class models might better separate the sclera from other regions.
+
+
+## Example: Segmentation model training and evaluation
+1. Clone the repository and place the downloaded ocular datasets in the "SSBC_DATASETS_400x300" directory.  
+2. Run [train_model.py](https://github.com/dariant/SSBC2025_Segmentation/blob/main/train_model.py) to train the model on a desired dataset (e.g. the SSBC2025 Synthetic dataset).
+3. Run [generate_predictions.py](https://github.com/dariant/SSBC2025_Segmentation/blob/main/generate_predictions.py) to perform segmentation with the trained model on real-world validation sets (e.g. MOBIUS, SMD+SLD) and save the binarised and probabilstic predictions. 
+4. Run [evaluate_predictions.py](https://github.com/dariant/SSBC2025_Segmentation/blob/main/evaluate_predictions.py) to evaluate the predictions separately in terms of F1 score and IoU for binarised masks, and Precision, Recall, and F1 score for probabilistic images. 
+
+Set the desired training, testing, and evaluation configurations in [train_config.py](https://github.com/dariant/SSBC2025_Segmentation/blob/main/configs/train_config.py), [predict_config.py](https://github.com/dariant/SSBC2025_Segmentation/blob/main/configs/predict_config.py), and [eval_config.py](https://github.com/dariant/SSBC2025_Segmentation/blob/main/configs/eval_config.py).
 
 
 
