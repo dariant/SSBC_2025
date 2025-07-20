@@ -27,9 +27,10 @@ The participants were asked to train two versions of their segmentation method. 
 
 
 ## Evaluation datasets 
-- [MOBIUS](https://sclera.fri.uni-lj.si/datasets.html) for evaluating segmentation performance
-- [SMD+SLD](https://sites.google.com/site/dasabhijit2048/datatsets) for evaluating segmentation performance
-- SynMOBIUS for evaluating segmentation performance (To be released)
+The following datasets were used as part of SSBC for evaluating sclera segmentation performance: 
+- [MOBIUS (Mobile Ocular Biometrics In Unconstrained Settings dataset)](https://sclera.fri.uni-lj.si/datasets.html)
+- [SMD+SLD (Sclera Mobile Dataset + Sclera Liveness Dataset)](https://sites.google.com/site/dasabhijit2048/datatsets)
+- [SynMOBIUS (Synthetic MOBIUS dataset)](https://sclera.fri.uni-lj.si/datasets.html) (To be released)
 
 The evaluation will be performed on the sclera alone, however, 4-class models might better separate the sclera from other regions.
 
