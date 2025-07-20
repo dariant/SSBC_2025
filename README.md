@@ -2,7 +2,7 @@
 Starter kit for the baseline sclera segmentation model used in the SSBC competition at IJCB 2025. 
 
 <a href='TODO'><img src='https://img.shields.io/badge/Paper-arXiv-red'></a>
-<a href='https://ijcb2025.ieee-biometrics.org/competitions/'><img src='https://img.shields.io/badge/Competition_at-IJCB_2025-maroon'></a>
+<a href='https://ijcb2025.ieee-biometrics.org/competitions/'><img src='https://img.shields.io/badge/Competition_at-IJCB_2025-blue'></a>
   
 ## Usage 
 1. Place the downloaded ocular datasets in the "SSBC_DATASETS_400x300" directory.  
