@@ -11,8 +11,8 @@ Set the desired training, testing, and evaluation configurations in [train_confi
 
 ## Training datasets
 The following datasets were used as part of SSBC for training sclera segmentation models: 
-- [SBVPI](https://sclera.fri.uni-lj.si/datasets.html)  
-- SynCROI (To be released)
+- [SBVPI (Sclera Blood Vessels, Periocular and Iris dataset)](https://sclera.fri.uni-lj.si/datasets.html)  
+- [SynCROI (Synthetic Cross-Racial Ocular Image dataset)](https://sclera.fri.uni-lj.si/datasets.html) (To be released)
 
 Both training datasets come in 2 versions. One version contains the images and the 2-class sclera masks, while the other contains the images and corresponding 4-class (SIP - Sclera, Iris, Pupil) masks. In the 2-class masks, the white region represents the sclera, while the black region represents the background (everything else). In the 4-class masks, the classes are represented by different colors: red – sclera, green – iris, blue – pupil, black – periocular/background. The SSBC Synthetic dataset contains the same image samples in both versions (thus only differing in the masks), however, SBVPI contains significantly fewer images in the 4-class version due to a lack of handcrafted annotations. The first 5000 training and first 500 validation samples of the SSBC Synthetic dataset are based on Caucasian subjects, while the rest are based on Asian subjects.
 
@@ -27,7 +27,7 @@ The participants were asked to train two versions of their segmentation method. 
 
 
 ## Evaluation datasets 
-MOBIUS](https://sclera.fri.uni-lj.si/datasets.html) for evaluating segmentation performance
+- [MOBIUS](https://sclera.fri.uni-lj.si/datasets.html) for evaluating segmentation performance
 - [SMD+SLD](https://sites.google.com/site/dasabhijit2048/datatsets) for evaluating segmentation performance
 - SynMOBIUS for evaluating segmentation performance (To be released)
 
