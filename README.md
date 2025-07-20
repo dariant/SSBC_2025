@@ -9,13 +9,30 @@ Starter kit for the baseline sclera segmentation model used in the SSBC competit
 
 Set the desired training, testing, and evaluation configurations in [train_config.py](https://github.com/dariant/SSBC2025_Segmentation/blob/main/configs/train_config.py), [predict_config.py](https://github.com/dariant/SSBC2025_Segmentation/blob/main/configs/predict_config.py), and [eval_config.py](https://github.com/dariant/SSBC2025_Segmentation/blob/main/configs/eval_config.py).
 
-## Datasets
-The following real-world and synthetic datasets were used as part of SSBC: 
-- [SBVPI](https://sclera.fri.uni-lj.si/datasets.html) for training segmentation models
-- SynCROI for training segmentation models (To be released)
-- [MOBIUS](https://sclera.fri.uni-lj.si/datasets.html) for evaluating segmentation performance
-- [SMD+SLD](https://sites.google.com/site/dasabhijit2048/datatsets), for evaluating segmentation performance
+## Training datasets
+The following datasets were used as part of SSBC for training sclera segmentation models: 
+- [SBVPI](https://sclera.fri.uni-lj.si/datasets.html)  
+- SynCROI (To be released)
+
+Both training datasets come in 2 versions. One version contains the images and the 2-class sclera masks, while the other contains the images and corresponding 4-class (SIP - Sclera, Iris, Pupil) masks. In the 2-class masks, the white region represents the sclera, while the black region represents the background (everything else). In the 4-class masks, the classes are represented by different colors: red – sclera, green – iris, blue – pupil, black – periocular/background. The SSBC Synthetic dataset contains the same image samples in both versions (thus only differing in the masks), however, SBVPI contains significantly fewer images in the 4-class version due to a lack of handcrafted annotations. The first 5000 training and first 500 validation samples of the SSBC Synthetic dataset are based on Caucasian subjects, while the rest are based on Asian subjects.
+
+## Training protocol of SSBC
+
+The participants were asked to train two versions of their segmentation method. The first should be trained exclusively on the SynMOBIUS data, while the second can use any mix of the SynMOBIUS and SBVPI data. Any other decisions regarding the model architecture and training approach were left to the participants’ discretion, including:
+- Train either a 4-class or a 2-class segmentation model,
+- The training/validation set distribution split,
+- Sample balancing in model training to equalize the real/synthetic sample representation
+- Data augmentation during training
+- Training image size, however, the final evaluation is performed on 400x300 images
+
+
+## Evaluation datasets 
+MOBIUS](https://sclera.fri.uni-lj.si/datasets.html) for evaluating segmentation performance
+- [SMD+SLD](https://sites.google.com/site/dasabhijit2048/datatsets) for evaluating segmentation performance
 - SynMOBIUS for evaluating segmentation performance (To be released)
+
+The evaluation will be performed on the sclera alone, however, 4-class models might better separate the sclera from other regions.
+
 
 
 ## Requirements & Installation
