@@ -1,4 +1,4 @@
-## Sclera Segmentation and Benchmarking Competition (SSBC 2025)
+# SSBC 2025: Privacy-enhancing Sclera Segmentation Benchmarking Competition
 Starter kit for the baseline sclera segmentation model used in the SSBC competition at IJCB 2025. 
 
 ## Usage 
@@ -9,7 +9,7 @@ Starter kit for the baseline sclera segmentation model used in the SSBC competit
 
 Set the desired training, testing, and evaluation configurations in [train_config.py](https://github.com/dariant/SSBC2025_Segmentation/blob/main/configs/train_config.py), [predict_config.py](https://github.com/dariant/SSBC2025_Segmentation/blob/main/configs/predict_config.py), and [eval_config.py](https://github.com/dariant/SSBC2025_Segmentation/blob/main/configs/eval_config.py).
 
-## Training datasets and protocol
+## Training datasets and protocol:
 The following datasets were used as part of SSBC for training sclera segmentation models: 
 - [SBVPI (Sclera Blood Vessels, Periocular and Iris dataset)](https://sclera.fri.uni-lj.si/datasets.html)  
 - [SynCROI (Synthetic Cross-Racial Ocular Image dataset)](https://sclera.fri.uni-lj.si/datasets.html) (To be released)
@@ -24,7 +24,7 @@ The participants were asked to train two versions of their segmentation method, 
 - Training image size, however, the final evaluation was performed on 400x300 images
 
 
-## Evaluation datasets 
+## Evaluation datasets and protocol:
 The following datasets were used as part of SSBC for evaluating sclera segmentation performance: 
 - [MOBIUS (Mobile Ocular Biometrics In Unconstrained Settings dataset)](https://sclera.fri.uni-lj.si/datasets.html)
 - [SMD+SLD (Sclera Mobile Dataset + Sclera Liveness Dataset)](https://sites.google.com/site/dasabhijit2048/datatsets)
