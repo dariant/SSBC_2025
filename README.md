@@ -17,17 +17,22 @@ The participants were asked to train two versions of their segmentation method, 
 - Training either a 4-class or a 2-class segmentation model,
 - The training/validation set distribution split,
 - Sample balancing to equalize the real/synthetic sample representation,
-- Data augmentation during training,
-- Training image size, however, the final evaluation was performed on 400x300 images
+- Data augmentation during training
 
 ## Evaluation datasets and protocol
-The following datasets were used as part of SSBC for evaluating sclera segmentation performance: 
+The following datasets were used as part of SSBC to evaluate the sclera segmentation performance of submitted models: 
 - [MOBIUS (Mobile Ocular Biometrics In Unconstrained Settings dataset)](https://sclera.fri.uni-lj.si/datasets.html)
 - [SMD+SLD (Sclera Mobile Dataset + Sclera Liveness Dataset)](https://sites.google.com/site/dasabhijit2048/datatsets)
 - [SynMOBIUS (Synthetic MOBIUS dataset)](https://sclera.fri.uni-lj.si/datasets.html) (To be released)
 
-The evaluation will be performed on the sclera alone, however, 4-class models might better separate the sclera from other regions.
+The trained segmentation models should be used to predict the sclera regions in the images of the different evaluation datasets. 
+The predictions should include: 
+- Binarised segmentation masks, where white pixels denote sclera and black denote everything else,
+- Grayscale probabilistic masks, where the intensity represents the probability of the pixel belonging to the sclera
 
+For evaluation the masks should be saved in image form (PNG format) at a size of 400x300 (WxH).  
+Do note, that the evaluation is performed on the sclera alone, however, 4-class segmentation models might better separate the sclera from other regions. 
+The included generation script ([generate_predictions.py](https://github.com/dariant/SSBC2025_Segmentation/blob/main/generate_predictions.py)) contains a basic approach for generating both probabilistic and binarised predictions, but different probability generation and binarization/thresholding strategy can also be used.
 
 ## Example: Segmentation model training and evaluation
 1. Clone the repository and place the downloaded ocular datasets in the "SSBC_DATASETS_400x300" directory.  
