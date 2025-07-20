@@ -10,13 +10,13 @@ Starter kit for the baseline sclera segmentation model used in the SSBC competit
 Set the desired training, testing, and evaluation configurations in [train_config.py](https://github.com/dariant/SSBC2025_Segmentation/blob/main/configs/train_config.py), [predict_config.py](https://github.com/dariant/SSBC2025_Segmentation/blob/main/configs/predict_config.py), and [eval_config.py](https://github.com/dariant/SSBC2025_Segmentation/blob/main/configs/eval_config.py).
 
 ## Datasets
-The following datasets were used as part of SSBC: 
-- SBVPI
-- SynCROI
-- MOBIUS
-- SMD+SLD
-- SynMOBIUS
-  
+The following real-world and synthetic datasets were used as part of SSBC: 
+- [SBVPI](https://sclera.fri.uni-lj.si/datasets.html) for training segmentation models
+- SynCROI for training segmentation models (To be released)
+- [MOBIUS](https://sclera.fri.uni-lj.si/datasets.html) for evaluating segmentation performance
+- [SMD+SLD](https://sites.google.com/site/dasabhijit2048/datatsets), for evaluating segmentation performance
+- SynMOBIUS for evaluating segmentation performance (To be released)
+
 
 ## Requirements & Installation
 ```bash
