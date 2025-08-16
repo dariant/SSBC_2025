@@ -1,6 +1,6 @@
 # SSBC 2025: Privacy-enhancing Sclera Segmentation Benchmarking Competition
 
-<a href='TODO'><img src='https://img.shields.io/badge/Paper-arXiv-red'></a>
+<a href='https://arxiv.org/abs/2508.10737'><img src='https://img.shields.io/badge/Paper-arXiv-red'></a>
 <a href='https://ijcb2025.ieee-biometrics.org/competitions/'><img src='https://img.shields.io/badge/Competition_at-IJCB_2025-blue'></a>
 
 This repository contains information regarding the Privacy-enhancing Sclera Segmentation Benchmarking Competition, which was held at IJCB 2025.
