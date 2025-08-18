@@ -54,7 +54,12 @@ pip install -r requirements.txt
 ## Citation
 If you use the code or results of this repository, please cite the SSBC paper:
 ```
-TBA
+@article{vitek2025privacy,
+  title={{Privacy-enhancing Sclera Segmentation Benchmarking Competition: SSBC 2025}},
+  author={Vitek, Matej and Toma{\v{s}}evi{\'c}, Darian and Das, Abhijit and Nathan, Sabari and {\"O}zbulak, G{\"o}khan and {\"O}zbulak, G{\"o}zde Ay{\c{s}}e Tataro{\u{g}}lu and Calbimonte, Jean-Paul and Anjos, Andr{\'e} and Bhatt, Hariohm Hemant and Premani, Dhruv Dhirendra and others},
+  journal={arXiv preprint arXiv:2508.10737},
+  year={2025}
+}
 ```
 
 
